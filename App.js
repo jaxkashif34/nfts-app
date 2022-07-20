@@ -51,6 +51,7 @@ export default function index() {
 const style = StyleSheet.create({
   loading: {
     flex: 1,
+    width: "100%",
     justifyContent: "center",
     alignContent: "center",
   },

@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import MainSlice from "./Features";
+import styleSlice from "./Features";
 export const store = configureStore({
   reducer: {
-    main: MainSlice,
+    styleSlice,
   },
 });
