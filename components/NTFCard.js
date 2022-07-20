@@ -3,10 +3,12 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { CircleButton, RectButton } from "../components/Button";
 import { NFTTitle, SubInfo, EthPrice } from "./SubInfo";
+import { useNavigation } from "@react-navigation/native";
 export default function NTFCard({ data }) {
   const { COLORS, SIZES, SHADOWS, assets } = useSelector(
     (state) => state.styleSlice
   );
+  const navigation = useNavigation();
   return (
     <View
       style={{
@@ -31,10 +33,15 @@ export default function NTFCard({ data }) {
         <CircleButton imgUrl={assets.heart} right={10} top={10} />
       </View>
 
-      <SubInfo />
+      <SubInfo time={data.time} />
 
       <View style={{ width: "100%", padding: SIZES.font }}>
-        <NFTTitle title={data.name} subtitle={data.creator} />
+        <NFTTitle
+          title={data.name}
+          subtitle={data.creator}
+          titleSize={SIZES.large}
+          subTitleSize={SIZES.small}
+        />
 
         <View
           style={{
@@ -45,7 +52,12 @@ export default function NTFCard({ data }) {
           }}
         >
           <EthPrice price={data.price} />
-          <RectButton data={data} />
+          <RectButton
+            data={data}
+            minWidth={120}
+            fontSize={SIZES.font}
+            handlePress={() => navigation.navigate("Details", { data })}
+          />
         </View>
       </View>
     </View>

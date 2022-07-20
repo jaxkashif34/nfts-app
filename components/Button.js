@@ -2,8 +2,7 @@ import { TouchableOpacity, Text, Image } from "react-native";
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectData } from "../store/Features";
-import { useNavigation } from "@react-navigation/native";
-export function CircleButton({ imgUrl, ...props }) {
+export function CircleButton({ imgUrl, onPress, ...props }) {
   const { SIZES, COLORS, SHADOWS } = useSelector(selectData);
   return (
     <TouchableOpacity
@@ -18,6 +17,7 @@ export function CircleButton({ imgUrl, ...props }) {
         ...SHADOWS.light,
         ...props,
       }}
+      onPress={onPress}
     >
       <Image
         source={imgUrl}
@@ -28,8 +28,13 @@ export function CircleButton({ imgUrl, ...props }) {
   );
 }
 
-export function RectButton({ data, ...props }) {
-  const navigation = useNavigation();
+export function RectButton({
+  minWidth,
+  fontSize,
+  data,
+  handlePress,
+  ...props
+}) {
   const { SIZES, COLORS, FONTS } = useSelector(selectData);
   return (
     <TouchableOpacity
@@ -37,17 +42,17 @@ export function RectButton({ data, ...props }) {
         backgroundColor: COLORS.primary,
         padding: SIZES.small,
         borderRadius: SIZES.extraLarge,
-        minWidth: 120,
+        minWidth: minWidth,
         ...props,
       }}
-      onPress={() => navigation.navigate("Details", { data })}
+      onPress={handlePress}
     >
       <Text
         style={{
           color: COLORS.white,
           fontFamily: FONTS.semiBold,
-          fontSize: SIZES.font,
-          textAlign:"center"
+          fontSize: fontSize,
+          textAlign: "center",
         }}
       >
         Place a bid

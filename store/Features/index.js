@@ -14,6 +14,8 @@ const initialState = {
   SIZES,
   FONTS,
   NFTData,
+  readMore: false,
+  text: "",
 };
 
 export const stylesReducer = createSlice({
@@ -33,10 +35,16 @@ export const stylesReducer = createSlice({
         state.NFTData = filteredData;
       }
     },
+    setReadMore: (state, { payload }) => {
+      state.readMore = payload;
+    },
+    setText: (state, { payload }) => {
+      state.text = payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { searchNFT } = stylesReducer.actions;
+export const { searchNFT, setReadMore,setText } = stylesReducer.actions;
 export const selectData = (state) => state.styleSlice;
 export default stylesReducer.reducer;

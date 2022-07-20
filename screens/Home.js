@@ -3,7 +3,7 @@ import { View, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FocusedStatusBar, NFTCard } from "../components";
 import { useSelector } from "react-redux";
-import HomeHeader from "../components/HomeHeader";
+import { HomeHeader } from "../components";
 export default function Home() {
   const { COLORS, NFTData } = useSelector((state) => state.styleSlice);
   return (

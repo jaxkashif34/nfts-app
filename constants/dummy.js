@@ -1,9 +1,19 @@
 import assets from "./assets";
+import moment from "moment";
+// get random hours and minutes
+const getRandomNumber = (max, min) =>
+  Math.floor(Math.random() * max - min) + min;
+const getRandomTime = () => {
+  return `${moment().add(getRandomNumber(12, 7), "hours").hours()}h ${moment()
+    .add(getRandomNumber(60, 1), "minutes")
+    .minutes()}m`;
+};
 
 const NFTData = [
   {
     id: "NFT-01",
     name: "Abstracto #312",
+    time: getRandomTime(),
     creator: "Putri Intan",
     price: 4.25,
     description:
@@ -36,6 +46,7 @@ const NFTData = [
   {
     id: "NFT-02",
     name: "Green Coins",
+    time: getRandomTime(),
     creator: "Siti Nurhaliza",
     price: 7.25,
     description:
@@ -54,6 +65,7 @@ const NFTData = [
   {
     id: "NFT-03",
     name: "NFT coins race",
+    time: getRandomTime(),
     creator: "Elisabeth aho",
     price: 95.25,
     description:
@@ -79,6 +91,7 @@ const NFTData = [
   {
     id: "NFT-04",
     name: "Nifty NFT",
+    time: getRandomTime(),
     creator: "Putri Intan",
     price: 54.25,
     description:
@@ -118,6 +131,7 @@ const NFTData = [
   {
     id: "NFT-05",
     name: "Colorful circles",
+    time: getRandomTime(),
     creator: "David doe",
     price: 10.25,
     description:
@@ -136,6 +150,7 @@ const NFTData = [
   {
     id: "NFT-06",
     name: "Black box model",
+    time: getRandomTime(),
     creator: "Leo Messi",
     price: 20.25,
     description:
@@ -182,6 +197,7 @@ const NFTData = [
   {
     id: "NFT-07",
     name: "Abstracto soulful art",
+    time: getRandomTime(),
     creator: "Victor de la Cruz",
     price: 18.25,
     description:

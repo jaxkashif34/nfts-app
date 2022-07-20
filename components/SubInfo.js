@@ -2,21 +2,20 @@ import { View, Text, Image } from "react-native";
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectData } from "../store/Features";
-import moment from "moment";
-export function SubInfo() {
+export function SubInfo({ time }) {
   const { SIZES } = useSelector(selectData);
   return (
     <View
       style={{
         width: "100%",
         paddingHorizontal: SIZES.font,
-        marginTop: SIZES.extraLarge,
+        marginTop: -SIZES.extraLarge,
         flexDirection: "row",
         justifyContent: "space-between",
       }}
     >
       <People />
-      <EndDate />
+      <EndDate time={time} />
     </View>
   );
 }
@@ -48,15 +47,7 @@ const People = () => {
     </View>
   );
 };
-// get random hours and minutes
-const getRandomNumber = (max, min) =>
-  Math.floor(Math.random() * max - min) + min;
-const getRandomTime = () => {
-  return `${moment().add(getRandomNumber(12, 7), "hours").hours()}h ${moment()
-    .add(getRandomNumber(60, 1), "minutes")
-    .minutes()}m`;
-};
-const EndDate = () => {
+const EndDate = ({ time }) => {
   const { SIZES, COLORS, SHADOWS, FONTS } = useSelector(selectData);
   return (
     <View
@@ -69,7 +60,7 @@ const EndDate = () => {
         alignItems: "center",
         ...SHADOWS.light,
         elevation: 1,
-        // maxWidth:"50%"
+        maxWidth: "50%",
       }}
     >
       <Text
@@ -88,20 +79,21 @@ const EndDate = () => {
           color: COLORS.primary,
         }}
       >
-        {getRandomTime()}
+        {time}
+        
       </Text>
     </View>
   );
 };
 
-export const NFTTitle = ({ title, subtitle }) => {
-  const { SIZES, COLORS, FONTS } = useSelector(selectData);
+export const NFTTitle = ({ title, subtitle, titleSize, subTitleSize }) => {
+  const { COLORS, FONTS } = useSelector(selectData);
   return (
     <View>
       <Text
         style={{
           fontFamily: FONTS.semiBold,
-          fontSize: SIZES.large,
+          fontSize: titleSize,
           color: COLORS.primary,
         }}
       >
@@ -110,7 +102,7 @@ export const NFTTitle = ({ title, subtitle }) => {
       <Text
         style={{
           fontFamily: FONTS.regular,
-          fontSize: SIZES.small,
+          fontSize: subTitleSize,
           color: COLORS.primary,
         }}
       >
