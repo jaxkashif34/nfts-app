@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 import {
   assets,
   COLORS,
@@ -17,6 +18,9 @@ const initialState = {
   readMore: false,
   text: "",
 };
+const getData = createAsyncThunk("nfts/getData", async () => {
+  const res = await axios.get("");
+});
 
 export const stylesReducer = createSlice({
   name: "stylesReducer",
@@ -45,6 +49,6 @@ export const stylesReducer = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { searchNFT, setReadMore,setText } = stylesReducer.actions;
+export const { searchNFT, setReadMore, setText } = stylesReducer.actions;
 export const selectData = (state) => state.styleSlice;
 export default stylesReducer.reducer;

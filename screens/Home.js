@@ -1,14 +1,19 @@
 import React from "react";
-import { View, FlatList } from "react-native";
+import { View, FlatList, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FocusedStatusBar, NFTCard } from "../components";
 import { useSelector } from "react-redux";
 import { HomeHeader } from "../components";
+import { GET_DATA } from "../query";
+import { useQuery } from "@apollo/client";
 export default function Home() {
+  const { loading, error, data } = useQuery(GET_DATA);
+  console.log(error);
   const { COLORS, NFTData } = useSelector((state) => state.styleSlice);
   return (
     <SafeAreaView>
       <FocusedStatusBar backgroundColor={COLORS.primary} />
+      {!loading && !error && console.log(data)}
       <View>
         <FlatList
           data={NFTData}
